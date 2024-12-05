@@ -3,7 +3,7 @@ pipelines:
     group: simple-group
     materials:
       git:
-        url: https://github.com/Asmodeus2080/gocd-demo
+        url: https://github.com/Asmodeus2080/go-cd-material-rep.git
         branch: main
     stages:
       - name: default-stage
