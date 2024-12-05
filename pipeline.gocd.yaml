@@ -37,7 +37,7 @@ pipelines:
     label_template: "meta-${COUNT}" # Simple label for versioning
     materials:
       - git: # Define the material type
-          url: https://github.com/yourorg/gocd-pipeline-configs.git # Git repository URL
+          url: https://github.com/Asmodeus2080/go-cd-material-rep.git # Git repository URL
           branch: main # Git branch to track
     stages:
       - define-pipelines: # Stage definition
