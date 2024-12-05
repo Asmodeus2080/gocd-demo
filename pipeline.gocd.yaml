@@ -30,21 +30,50 @@
 #                       - ./...
 
 # pipeline.gocd.yaml
-format_version: 10
+# format_version: 10
+# pipelines:
+#   pipeline-creator:
+#     group: meta-pipelines
+#     label_template: "meta-${COUNT}" # Simple label for versioning
+#     materials:
+#       - git: # Define the material type
+#           url: https://github.com/Asmodeus2080/go-cd-material-rep.git # Git repository URL
+#           branch: main # Git branch to track
+#     stages:
+#       - define-pipelines: # Stage definition
+#           jobs:
+#             - name: create-pipelines-job # Job definition
+#               tasks:
+#                 - exec:
+#                     command: echo
+#                     arguments:
+#                       - "This pipeline doesn't do anything but defines pipelines!"
+
 pipelines:
-  pipeline-creator:
-    group: meta-pipelines
-    label_template: "meta-${COUNT}" # Simple label for versioning
+  my-go-project:
+    group: go-project-group
     materials:
-      - git: # Define the material type
-          url: https://github.com/Asmodeus2080/go-cd-material-rep.git # Git repository URL
-          branch: main # Git branch to track
+      git:
+        url: https://github.com/Asmodeus2080/go-cd-material-rep.git
+        branch: main
     stages:
-      - define-pipelines: # Stage definition
+      - build:
           jobs:
-            - name: create-pipelines-job # Job definition
-              tasks:
-                - exec:
-                    command: echo
-                    arguments:
-                      - "This pipeline doesn't do anything but defines pipelines!"
+            - build-job:
+                tasks:
+                  - exec:
+                      command: go
+                      arguments: ["mod", "tidy"]
+                  - exec:
+                      command: go
+                      arguments: ["build", "-o", "my-app"]
+                  - exec:
+                      command: go
+                      arguments: ["test", "./..."]
+      - deploy:
+          jobs:
+            - deploy-job:
+                tasks:
+                  - exec:
+                      command: echo
+                      arguments: ["Deployment step: Implement actual deployment script here."]
