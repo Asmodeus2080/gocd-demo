@@ -1,60 +1,9 @@
-# # ci.gocd.yaml
-# format_version: 10
-# pipelines:
-#   my-first-pipeline: # Definition of mypipe1 pipeline
-#     group: mygroup # Group name can contain only alphanumeric and underscore characters
-#     display_order: 10
-#     label_template: "dummy-${COUNT}"
-#     materials:
-#       - git:
-#           url: https://github.com/Asmodeus2080/gocd-demo.git
-#           branch: main
-#     stages:
-#       - build: # Define the build stage
-#           jobs: # Jobs should be inside each stage
-#             - name: build-job
-#               tasks:
-#                 - exec:
-#                     command: go
-#                     arguments:
-#                       - build
-#                       - .
-#       - test: # Define the test stage
-#           jobs: # Jobs should be inside each stage
-#             - name: test-job
-#               tasks:
-#                 - exec:
-#                     command: go
-#                     arguments:
-#                       - test
-#                       - ./...
-
-# pipeline.gocd.yaml
-# format_version: 10
-# pipelines:
-#   pipeline-creator:
-#     group: meta-pipelines
-#     label_template: "meta-${COUNT}" # Simple label for versioning
-#     materials:
-#       - git: # Define the material type
-#           url: https://github.com/Asmodeus2080/go-cd-material-rep.git # Git repository URL
-#           branch: main # Git branch to track
-#     stages:
-#       - define-pipelines: # Stage definition
-#           jobs:
-#             - name: create-pipelines-job # Job definition
-#               tasks:
-#                 - exec:
-#                     command: echo
-#                     arguments:
-#                       - "This pipeline doesn't do anything but defines pipelines!"
-
 pipelines:
   simple-pipeline:
     group: simple-group
     materials:
       git:
-        url: https://github.com/Asmodeus2080/go-cd-material-rep.git
+        url: https://github.com/Asmodeus2080/gocd-demo
         branch: main
     stages:
       - name: default-stage
