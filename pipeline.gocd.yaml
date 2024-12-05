@@ -1,15 +1,27 @@
+# pipelines:
+#   simple-pipeline:
+#     group: simple-group
+#     # materials:
+#     #   git:
+#     #     url: https://github.com/Asmodeus2080/go-cd-material-rep.git
+#     #     branch: main
+#     stages:
+#       - name: default-stage
+#         jobs:
+#           - name: default-job
+#             tasks:
+#               - exec:
+#                   command: echo
+#                   arguments: ["Hello, GoCD!"]
+
 pipelines:
-  simple-pipeline:
-    group: simple-group
-    # materials:
-    #   git:
-    #     url: https://github.com/Asmodeus2080/go-cd-material-rep.git
-    #     branch: main
+  no-material-pipeline:
+    group: test-group
     stages:
-      - name: default-stage
+      - name: test-stage
         jobs:
-          - name: default-job
+          - name: test-job
             tasks:
               - exec:
                   command: echo
-                  arguments: ["Hello, GoCD!"]
+                  arguments: ["This is a pipeline without a material."]
