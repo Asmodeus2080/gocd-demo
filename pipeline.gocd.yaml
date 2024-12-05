@@ -1,30 +1,52 @@
+# # ci.gocd.yaml
+# format_version: 10
+# pipelines:
+#   my-first-pipeline: # Definition of mypipe1 pipeline
+#     group: mygroup # Group name can contain only alphanumeric and underscore characters
+#     display_order: 10
+#     label_template: "dummy-${COUNT}"
+#     materials:
+#       - git:
+#           url: https://github.com/Asmodeus2080/gocd-demo.git
+#           branch: main
+#     stages:
+#       - build: # Define the build stage
+#           jobs: # Jobs should be inside each stage
+#             - name: build-job
+#               tasks:
+#                 - exec:
+#                     command: go
+#                     arguments:
+#                       - build
+#                       - .
+#       - test: # Define the test stage
+#           jobs: # Jobs should be inside each stage
+#             - name: test-job
+#               tasks:
+#                 - exec:
+#                     command: go
+#                     arguments:
+#                       - test
+#                       - ./...
+
 # ci.gocd.yaml
 format_version: 10
 pipelines:
-  my-first-pipeline: # Definition of mypipe1 pipeline
-    group: mygroup # Group name can contain only alphanumeric and underscore characters
-    display_order: 10
-    label_template: "dummy-${COUNT}"
+  pipeline-creator:
+    group: meta-pipelines
+    label_template: "meta-${COUNT}" # Simple label for versioning
     materials:
       - git:
-          url: https://github.com/Asmodeus2080/gocd-demo.git
+          url: https://github.com/Asmodeus2080/gocd-demo.git # Config repository URL
           branch: main
     stages:
-      - build: # Define the build stage
-          jobs: # Jobs should be inside each stage
-            - name: build-job
-              tasks:
-                - exec:
-                    command: go
-                    arguments:
-                      - build
-                      - .
-      - test: # Define the test stage
-          jobs: # Jobs should be inside each stage
-            - name: test-job
-              tasks:
-                - exec:
-                    command: go
-                    arguments:
-                      - test
-                      - ./...
+      - define-pipelines:
+          jobs:
+            - create-pipelines-job
+jobs:
+  create-pipelines-job:
+    tasks:
+      - exec:
+          command: echo
+          arguments:
+            - "This pipeline doesn't do anything but defines pipelines!"
