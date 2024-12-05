@@ -54,26 +54,26 @@ pipelines:
     group: go-project-group
     materials:
       git:
-        url: https://github.com/Asmodeus2080/go-cd-material-rep.git
+        url: https://github.com/your-repo/your-go-project.git
         branch: main
     stages:
-      - build:
-          jobs:
-            - build-job:
-                tasks:
-                  - exec:
-                      command: go
-                      arguments: ["mod", "tidy"]
-                  - exec:
-                      command: go
-                      arguments: ["build", "-o", "my-app"]
-                  - exec:
-                      command: go
-                      arguments: ["test", "./..."]
-      - deploy:
-          jobs:
-            - deploy-job:
-                tasks:
-                  - exec:
-                      command: echo
-                      arguments: ["Deployment step: Implement actual deployment script here."]
+      - name: build
+        jobs:
+          - name: build-job
+            tasks:
+              - exec:
+                  command: go
+                  arguments: ["mod", "tidy"]
+              - exec:
+                  command: go
+                  arguments: ["build", "-o", "my-app"]
+              - exec:
+                  command: go
+                  arguments: ["test", "./..."]
+      - name: deploy
+        jobs:
+          - name: deploy-job
+            tasks:
+              - exec:
+                  command: echo
+                  arguments: ["Deployment step: Implement actual deployment script here."]
