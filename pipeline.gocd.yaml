@@ -1,7 +1,7 @@
 # ci.gocd.yaml
 format_version: 10
 pipelines:
-  myfirstpipeline: # Definition of mypipe1 pipeline
+  my-first-pipeline: # Definition of mypipe1 pipeline
     group: mygroup # Group name can contain only alphanumeric and underscore characters
     display_order: 10
     label_template: "dummy-${COUNT}"
