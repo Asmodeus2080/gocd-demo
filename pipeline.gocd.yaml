@@ -10,25 +10,21 @@ pipelines:
           url: https://github.com/Asmodeus2080/gocd-demo.git
           branch: main
     stages:
-      - build:
-          jobs:
-            - build-job
-      - test:
-          jobs:
-            - test-job
-
-jobs:
-  build-job:
-    tasks:
-      - exec:
-          command: go
-          arguments:
-            - build
-            - .
-  test-job:
-    tasks:
-      - exec:
-          command: go
-          arguments:
-            - test
-            - ./...
+      - build: # Define the build stage
+          jobs: # Jobs should be inside each stage
+            - name: build-job
+              tasks:
+                - exec:
+                    command: go
+                    arguments:
+                      - build
+                      - .
+      - test: # Define the test stage
+          jobs: # Jobs should be inside each stage
+            - name: test-job
+              tasks:
+                - exec:
+                    command: go
+                    arguments:
+                      - test
+                      - ./...
