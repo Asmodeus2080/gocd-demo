@@ -1,10 +1,10 @@
 pipelines:
   simple-pipeline:
     group: simple-group
-    materials:
-      git:
-        url: https://github.com/Asmodeus2080/go-cd-material-rep.git
-        branch: main
+    # materials:
+    #   git:
+    #     url: https://github.com/Asmodeus2080/go-cd-material-rep.git
+    #     branch: main
     stages:
       - name: default-stage
         jobs:
