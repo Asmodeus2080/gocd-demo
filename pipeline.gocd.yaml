@@ -1,0 +1,34 @@
+# ci.gocd.yaml
+format_version: 10
+pipelines:
+  myfirstpipeline: # Definition of mypipe1 pipeline
+    group: mygroup # Group name can contain only alphanumeric and underscore characters
+    display_order: 10
+    label_template: "dummy-${COUNT}"
+    materials:
+      - git:
+          url: https://github.com/your-repo-url.git # Provide the Git repository URL
+          branch: main
+    stages:
+      - build:
+          jobs:
+            - build-job
+      - test:
+          jobs:
+            - test-job
+
+jobs:
+  build-job:
+    tasks:
+      - exec:
+          command: go
+          arguments:
+            - build
+            - .
+  test-job:
+    tasks:
+      - exec:
+          command: go
+          arguments:
+            - test
+            - ./...
