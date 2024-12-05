@@ -29,16 +29,16 @@
 #                       - test
 #                       - ./...
 
-# ci.gocd.yaml
+# pipeline.gocd.yaml
 format_version: 10
 pipelines:
   pipeline-creator:
     group: meta-pipelines
     label_template: "meta-${COUNT}" # Simple label for versioning
     materials:
-      - git:
-          url: https://github.com/yourorg/gocd-pipeline-configs.git # Config repository URL
-          branch: main
+      - git: # Define the material type
+          url: https://github.com/yourorg/gocd-pipeline-configs.git # Git repository URL
+          branch: main # Git branch to track
     stages:
       - define-pipelines: # Stage definition
           jobs:
