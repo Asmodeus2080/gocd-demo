@@ -7,7 +7,7 @@ pipelines:
     label_template: "dummy-${COUNT}"
     materials:
       - git:
-          url: https://github.com/your-repo-url.git # Provide the Git repository URL
+          url: https://github.com/Asmodeus2080/gocd-demo.git
           branch: main
     stages:
       - build:
