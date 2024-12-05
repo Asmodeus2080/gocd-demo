@@ -37,16 +37,14 @@ pipelines:
     label_template: "meta-${COUNT}" # Simple label for versioning
     materials:
       - git:
-          url: https://github.com/Asmodeus2080/gocd-demo.git # Config repository URL
+          url: https://github.com/yourorg/gocd-pipeline-configs.git # Config repository URL
           branch: main
     stages:
-      - define-pipelines:
+      - define-pipelines: # Stage definition
           jobs:
-            - create-pipelines-job
-jobs:
-  create-pipelines-job:
-    tasks:
-      - exec:
-          command: echo
-          arguments:
-            - "This pipeline doesn't do anything but defines pipelines!"
+            - name: create-pipelines-job # Job definition
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "This pipeline doesn't do anything but defines pipelines!"
