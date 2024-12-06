@@ -1,17 +1,16 @@
 format_version: 10
 pipelines:
-  no-material-pipeline:
+  basic-pipeline:
     group: test-group
     materials:
-      - git:
-          type: git
-          url: https://github.com/Asmodeus2080/go-cd-material-rep.git
+      - gitMaterial:
+          git: https://github.com/Asmodeus2080/go-cd-material-rep.git
           branch: main
     stages:
-      - name: test-stage
-        jobs:
-          - name: test-job
-            tasks:
-              - exec:
-                  command: echo
-                  arguments: ["This is a pipeline with a valid material."]
+      - test-stage:
+          jobs:
+            - name: test-job
+              tasks:
+                - exec:
+                    command: echo
+                    arguments: ["This is a pipeline with a valid material."]
