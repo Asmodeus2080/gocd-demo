@@ -38,15 +38,15 @@ pipelines:
                     command: echo
                     arguments:
                       - "Starting build process"
-                - exec:
-                    command: /bin/bash
-                    arguments:
-                      - -c
-                      - |
-                        echo "Current working directory:"
-                        pwd
-                        echo "Repository contents:"
-                        ls -la
+                # - exec:
+                #     command: /bin/bash
+                #     arguments:
+                #       - -c
+                #       - |
+                #         echo "Current working directory:"
+                #         pwd
+                #         echo "Repository contents:"
+                #         ls -la
 
       - test:
           jobs:
@@ -56,14 +56,14 @@ pipelines:
                     command: echo
                     arguments:
                       - "Running test suite"
-                - exec:
-                    command: /bin/bash
-                    arguments:
-                      - -c
-                      - |
-                        echo "Performing checks"
-                        # Add any specific test commands here
-                        exit 0
+                # - exec:
+                #     command: /bin/bash
+                #     arguments:
+                #       - -c
+                #       - |
+                #         echo "Performing checks"
+                #         # Add any specific test commands here
+                #         exit 0
 
       - deploy:
           jobs:
