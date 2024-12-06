@@ -8,7 +8,7 @@ pipelines:
     #       branch: main
     materials:
       gitMaterials:
-        git: "https://github.com/Asmodeus2080/go-cd-material-rep.git",
+        git: "https://github.com/Asmodeus2080/go-cd-material-rep.git"
         branch: main
     stages:
       - name: test-stage
