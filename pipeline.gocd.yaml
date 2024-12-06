@@ -18,7 +18,7 @@
 format_version: 10
 pipelines:
   demo-test-pipeline:
-    group: default
+    group: test-group
     label_template: "${COUNT}"
     lock_behavior: none
     display_order: -1
@@ -38,6 +38,15 @@ pipelines:
                     command: echo
                     arguments:
                       - "Starting build process"
+                - exec:
+                    command: /bin/bash
+                    arguments:
+                      - -c
+                      - |
+                        echo "Current working directory:"
+                        pwd
+                        echo "Repository contents:"
+                        ls -la
 
       - test:
           jobs:
@@ -46,7 +55,15 @@ pipelines:
                 - exec:
                     command: echo
                     arguments:
-                      - "Running comprehensive test suite"
+                      - "Running test suite"
+                - exec:
+                    command: /bin/bash
+                    arguments:
+                      - -c
+                      - |
+                        echo "Performing checks"
+                        # Add any specific test commands here
+                        exit 0
 
       - deploy:
           jobs:
@@ -55,4 +72,4 @@ pipelines:
                 - exec:
                     command: echo
                     arguments:
-                      - "Deploying application"
+                      - "Deployment simulation"
