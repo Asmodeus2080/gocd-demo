@@ -18,7 +18,7 @@
 format_version: 10
 pipelines:
   demo-test-pipeline:
-    group: new-test-group-1
+    group: default
     label_template: "${COUNT}"
     lock_behavior: none
     display_order: -1
