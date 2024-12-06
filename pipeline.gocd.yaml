@@ -19,7 +19,7 @@ format_version: 10
 pipelines:
   demo-test-pipeline:
     group: test-group
-    label_template: "${COUNT}"
+    label_template: "build-${COUNT}"
     # lock_behavior: none
     # display_order: -1
     materials:
