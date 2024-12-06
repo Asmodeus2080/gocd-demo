@@ -7,9 +7,9 @@ pipelines:
     #       url: https://github.com/Asmodeus2080/go-cd-material-rep.git
     #       branch: main
     materials:
-      gitMaterials:
-        git: "https://github.com/Asmodeus2080/go-cd-material-rep.git"
-        branch: main
+      - gitMaterials:
+          git: "https://github.com/Asmodeus2080/go-cd-material-rep.git"
+          branch: main
     stages:
       - name: test-stage
         jobs:
