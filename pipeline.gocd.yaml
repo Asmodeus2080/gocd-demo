@@ -26,7 +26,7 @@ pipelines:
       git-repo:
         git: https://github.com/Asmodeus2080/go-cd-material-rep.git
         branch: main
-        shallow_clone: true
+        # shallow_clone: true
 
     stages:
       - build:
