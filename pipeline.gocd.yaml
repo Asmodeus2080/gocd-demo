@@ -1,17 +1,9 @@
 format_version: 10
 pipelines:
-# comment
   basic-pipeline:
     group: test-group
     materials:
-      deploy-repo:
-        git: https://github.com/Asmodeus2080/go-cd-material-rep.git
-        branch: main
-    stages:
-      - name: test-stage
-        jobs:
-          - name: test-job
-            tasks:
-              - exec:
-                  command: echo
-                  arguments: ["This is a pipeline with a valid material."]
+      - git:
+          url: https://github.com/Asmodeus2080/go-cd-material-rep.git
+          branch: main
+    template: dummy_template_1
