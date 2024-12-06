@@ -6,4 +6,11 @@ pipelines:
       git:
         url: https://github.com/Asmodeus2080/go-cd-material-rep.git
         branch: main
-    template: dummy_template_1
+    stages:
+      - name: test-stage
+        jobs:
+          - name: test-job
+            tasks:
+              - exec:
+                  command: echo
+                  arguments: ["This is a pipeline without a template."]
