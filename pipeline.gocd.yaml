@@ -1,14 +1,87 @@
+# pipelines:
+#   basic-pipeline:
+#     group: test-group
+#     materials:
+#       - git:
+#           url: "https://github.com/Asmodeus2080/go-cd-material-rep.git"
+#           branch: main
+#     stages:
+#       - name: test-stage
+#         jobs:
+#           - name: test-job
+#             tasks:
+#               - exec:
+#                   command: echo
+#                   arguments: ["This is a pipeline without a template."]
+
+
+format_version: 10
 pipelines:
-  basic-pipeline:
-    group: test-group
+  demo-test-pipeline:
+    group: dummy
+    label_template: "${COUNT}"
+    lock_behavior: none
+    display_order: -1
     materials:
-      git: "https://github.com/Asmodeus2080/go-cd-material-rep.git"
-      branch: main
+      git-repo:
+        type: git
+        attributes:
+          url: https://github.com/Asmodeus2080/go-cd-material-rep.git
+          branch: main
+          shallow_clone: true
+
     stages:
-      - name: test-stage
-        jobs:
-          - name: test-job
-            tasks:
-              - exec:
-                  command: echo
-                  arguments: ["This is a pipeline without a template."]
+      - build:
+          clean_workspace: true
+          jobs:
+            build-job:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "Starting build process"
+                # - exec:
+                #     command: /bin/sh
+                #     arguments:
+                #       - -c
+                #       - |
+                #         echo "Running tests"
+                #         # mkdir -p test-reports
+                #         # # Add your test commands here
+                #         # # Example: run unit tests
+                #         # go test ./... || exit 1
+
+      - test:
+          jobs:
+            unit-tests:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "Running comprehensive test suite"
+                # - exec:
+                #     command: /bin/sh
+                #     arguments:
+                #       - -c
+                #       - |
+                #         # Example test scenarios
+                #         echo "Checking code coverage"
+                #         go test -cover ./...
+                        
+                #         echo "Running integration tests"
+                #         # Add integration test commands
+                        
+      - deploy:
+          jobs:
+            deploy-job:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "Deploying application"
+                # - exec:
+                #     command: /bin/sh
+                #     arguments:
+                #       - -c
+                #       - |
+                #         echo "Deployment completed successfully"
