@@ -23,9 +23,10 @@ pipelines:
     # lock_behavior: none
     # display_order: -1
     materials:
-      - git-repo:
-          git: https://github.com/Asmodeus2080/go-cd-material-rep.git
-          branch: main
+      git-repo:
+        type: git
+        url: https://github.com/Asmodeus2080/go-cd-material-rep.git
+        branch: main
         # shallow_clone: true
 
     stages:
