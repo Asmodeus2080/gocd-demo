@@ -24,11 +24,9 @@ pipelines:
     display_order: -1
     materials:
       git-repo:
-        type: git
-        attributes:
-          url: https://github.com/Asmodeus2080/go-cd-material-rep.git
-          branch: main
-          shallow_clone: true
+        git: https://github.com/Asmodeus2080/go-cd-material-rep.git
+        branch: main
+        shallow_clone: true
 
     stages:
       - build:
