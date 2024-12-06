@@ -3,7 +3,7 @@ pipelines:
   basic-pipeline:
     group: test-group
     materials:
-      - git:
-          url: https://github.com/Asmodeus2080/go-cd-material-rep.git
-          branch: main
+      git:
+        url: https://github.com/Asmodeus2080/go-cd-material-rep.git
+        branch: main
     template: dummy_template_1
