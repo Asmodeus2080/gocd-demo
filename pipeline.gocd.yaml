@@ -18,7 +18,7 @@
 format_version: 10
 pipelines:
   demo-test-pipeline:
-    group: dummy
+    group: new-test-group-1
     label_template: "${COUNT}"
     lock_behavior: none
     display_order: -1
@@ -38,16 +38,6 @@ pipelines:
                     command: echo
                     arguments:
                       - "Starting build process"
-                # - exec:
-                #     command: /bin/sh
-                #     arguments:
-                #       - -c
-                #       - |
-                #         echo "Running tests"
-                #         # mkdir -p test-reports
-                #         # # Add your test commands here
-                #         # # Example: run unit tests
-                #         # go test ./... || exit 1
 
       - test:
           jobs:
@@ -57,18 +47,7 @@ pipelines:
                     command: echo
                     arguments:
                       - "Running comprehensive test suite"
-                # - exec:
-                #     command: /bin/sh
-                #     arguments:
-                #       - -c
-                #       - |
-                #         # Example test scenarios
-                #         echo "Checking code coverage"
-                #         go test -cover ./...
-                        
-                #         echo "Running integration tests"
-                #         # Add integration test commands
-                        
+
       - deploy:
           jobs:
             deploy-job:
@@ -77,9 +56,3 @@ pipelines:
                     command: echo
                     arguments:
                       - "Deploying application"
-                # - exec:
-                #     command: /bin/sh
-                #     arguments:
-                #       - -c
-                #       - |
-                #         echo "Deployment completed successfully"
