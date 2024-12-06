@@ -30,7 +30,7 @@ pipelines:
 
     stages:
       - build:
-          clean_workspace: true
+          # clean_workspace: true
           jobs:
             build-job:
               tasks:
