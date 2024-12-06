@@ -4,6 +4,7 @@ pipelines:
     group: test-group
     materials:
       - git:
+          type: git
           url: https://github.com/Asmodeus2080/go-cd-material-rep.git
           branch: main
     stages:
