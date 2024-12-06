@@ -48,14 +48,14 @@ pipelines:
                 #         echo "Repository contents:"
                 #         ls -la
 
-      - test:
-          jobs:
-            unit-tests:
-              tasks:
-                - exec:
-                    command: echo
-                    arguments:
-                      - "Running test suite"
+      # - test:
+      #     jobs:
+      #       unit-tests:
+      #         tasks:
+      #           - exec:
+      #               command: echo
+      #               arguments:
+      #                 - "Running test suite"
                 # - exec:
                 #     command: /bin/bash
                 #     arguments:
@@ -65,11 +65,11 @@ pipelines:
                 #         # Add any specific test commands here
                 #         exit 0
 
-      - deploy:
-          jobs:
-            deploy-job:
-              tasks:
-                - exec:
-                    command: echo
-                    arguments:
-                      - "Deployment simulation"
+      # - deploy:
+      #     jobs:
+      #       deploy-job:
+      #         tasks:
+      #           - exec:
+      #               command: echo
+      #               arguments:
+      #                 - "Deployment simulation"
