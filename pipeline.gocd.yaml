@@ -4,9 +4,8 @@ pipelines:
   basic-pipeline:
     group: test-group
     materials:
-      - git:
-          url: https://github.com/Asmodeus2080/go-cd-material-rep.git
-          branch: main
+      git: https://github.com/Asmodeus2080/go-cd-material-rep.git
+      branch: main
     stages:
       - name: test-stage
         jobs:
