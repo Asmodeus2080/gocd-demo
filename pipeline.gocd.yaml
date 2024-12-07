@@ -14,17 +14,26 @@
 #                   command: echo
 #                   arguments: ["This is a pipeline without a template."]
 
-
-
-
-
+environments:
+  dev:
+    pipelines:
+      - demo-test-dev-pipeline
+  qa:
+    pipelines:
+      - demo-test-qa-pipeline
+  stag:
+    pipelines:
+      - demo-test-stag-pipeline
+  prod:
+    pipelines:
+      - demo-test-prod-pipeline
 
 
 format_version: 10
 pipelines:
-  demo-test-pipeline:
+  demo-test-dev-pipeline:
     group: test-group
-    label_template: "build-${COUNT}"
+    label_template: "dev-${COUNT}"
     lock_behavior: unlockWhenFinished
     # display_order: -1
     materials:
@@ -88,3 +97,53 @@ pipelines:
       #               command: echo
       #               arguments:
       #                 - "Deployment simulation"
+demo-test-qa-pipeline:
+  group: test-group
+  label_template: "qa-${COUNT}"
+  lock_behavior: unlockWhenFinished
+  materials:
+    dev_dependency:
+      pipeline: demo-test-dev-pipeline
+      stage: test
+  stages:
+    - test:
+        jobs:
+          qa_test:
+            command: echo
+            arguments: 
+              - "testing in qa env"
+  
+demo-test-stag-pipeline:
+  group: test-group
+  label_template: "stag-${COUNT}"
+  lock_behavior: unlockWhenFinished
+  materials:
+    qa_dependency:
+      pipeline: demo-test-qa-pipeline
+      stage: test
+  stages:
+    - run:
+        jobs:
+          run_stage:
+            command: echo
+            arguments:
+              - "running on stage"
+  
+demo-test-prod-pipeline:
+  group: test-group
+  label_template: "prod-${COUNT}"
+  lock_behavior: unlockWhenFinished
+  materials:
+    stag_dependency:
+      pipeline: demo-test-stag-pipeline
+      stag: run
+  stages:
+    - prod_run:
+        jobs:
+          run_prod:
+            command: echo
+            arguments:
+              - "running in prod"
+
+
+  
