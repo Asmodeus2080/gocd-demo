@@ -59,6 +59,7 @@ pipelines:
                     arguments:
                       - "Starting build process"
             another-build-job:
+              run_if: passed
               tasks:
                 - exec:
                     command: echo
