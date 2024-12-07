@@ -134,7 +134,7 @@ demo-test-prod-pipeline:
   materials:
     stag_dependency:
       pipeline: demo-test-stag-pipeline
-      stag: run
+      stage: run
   stages:
     - prod_run:
         jobs:
