@@ -15,12 +15,17 @@
 #                   arguments: ["This is a pipeline without a template."]
 
 
+
+
+
+
+
 format_version: 10
 pipelines:
   demo-test-pipeline:
     group: test-group
     label_template: "build-${COUNT}"
-    # lock_behavior: unlockWhenFinished
+    lock_behavior: unlockWhenFinished
     # display_order: -1
     materials:
       git-repo:
@@ -31,7 +36,10 @@ pipelines:
 
     stages:
       - build:
-          # clean_workspace: true
+          clean_workspace: true
+          approval:
+            type: manual
+            allow_only_on_success: true
           jobs:
             build-job:
               tasks:
