@@ -106,9 +106,11 @@ pipelines:
       - test:
           jobs:
             qa_test:
-              command: echo
-              arguments: 
-                - "testing in qa env"
+              tasks:
+                - exec:
+                    command: echo
+                    arguments: 
+                      - "testing in qa env"
   
 # demo-test-stag-pipeline:
 #   group: test-group
