@@ -20,7 +20,7 @@ pipelines:
   demo-test-pipeline:
     group: test-group
     label_template: "build-${COUNT}"
-    # lock_behavior: none
+    # lock_behavior: unlockWhenFinished
     # display_order: -1
     materials:
       git-repo:
@@ -42,9 +42,9 @@ pipelines:
             another-build-job:
               tasks:
                 - exec:
-                    command: exit
+                    command: echo
                     arguments:
-                      - 1
+                      - "success"
                 # - exec:
                 #     command: /bin/bash
                 #     arguments:
