@@ -94,21 +94,21 @@ pipelines:
   #     #               command: echo
   #     #               arguments:
   #     #                 - "Deployment simulation"
-demo-test-qa-pipeline:
-  group: test-group
-  label_template: "qa-${COUNT}"
-  lock_behavior: unlockWhenFinished
-  materials:
-    dev_dependency:
-      pipeline: demo-test-dev-pipeline
-      stage: test
-  stages:
-    - test:
-        jobs:
-          qa_test:
-            command: echo
-            arguments: 
-              - "testing in qa env"
+  demo-test-qa-pipeline:
+    group: test-group
+    label_template: "qa-${COUNT}"
+    lock_behavior: unlockWhenFinished
+    materials:
+      dev_dependency:
+        pipeline: demo-test-dev-pipeline
+        stage: test
+    stages:
+      - test:
+          jobs:
+            qa_test:
+              command: echo
+              arguments: 
+                - "testing in qa env"
   
 # demo-test-stag-pipeline:
 #   group: test-group
