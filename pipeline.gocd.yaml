@@ -14,19 +14,19 @@
 # #                   command: echo
 # #                   arguments: ["This is a pipeline without a template."]
 format_version: 10
-environments:
-  dev:
-    pipelines:
-      - demo-test-dev-pipeline
-  qa:
-    pipelines:
-      - demo-test-qa-pipeline
-  stag:
-    pipelines:
-      - demo-test-stag-pipeline
-  prod:
-    pipelines:
-      - demo-test-prod-pipeline
+# environments:
+#   dev:
+#     pipelines:
+#       - demo-test-dev-pipeline
+#   qa:
+#     pipelines:
+#       - demo-test-qa-pipeline
+#   stag:
+#     pipelines:
+#       - demo-test-stag-pipeline
+#   prod:
+#     pipelines:
+#       - demo-test-prod-pipeline
 pipelines:
   demo-test-dev-pipeline:
     group: test-group
