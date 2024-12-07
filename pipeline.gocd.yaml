@@ -33,12 +33,18 @@ pipelines:
       - build:
           # clean_workspace: true
           jobs:
-            build-job:
+            - build-job:
               tasks:
                 - exec:
                     command: echo
                     arguments:
                       - "Starting build process"
+            - another-build-job:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "starting another task in the same job"
                 # - exec:
                 #     command: /bin/bash
                 #     arguments:
