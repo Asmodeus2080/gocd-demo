@@ -15,9 +15,9 @@
 # #                   arguments: ["This is a pipeline without a template."]
 format_version: 10
 environments:
-#   dev:
-#     pipelines:
-#       - demo-test-dev-pipeline
+  dev:
+    pipelines:
+      - demo-test-dev-pipeline
   qa:
     pipelines:
       - demo-test-qa-pipeline
@@ -28,72 +28,72 @@ environments:
 #     pipelines:
 #       - demo-test-prod-pipeline
 pipelines:
-  # demo-test-dev-pipeline:
-  #   group: test-group
-  #   label_template: "dev-${COUNT}"
-  #   lock_behavior: unlockWhenFinished
-  #   # display_order: -1
-  #   materials:
-  #     git-repo:
-  #       type: git
-  #       url: https://github.com/Asmodeus2080/go-cd-material-rep.git
-  #       branch: main
-  #       # shallow_clone: true
+  demo-test-dev-pipeline:
+    group: test-group
+    label_template: "dev-${COUNT}"
+    lock_behavior: unlockWhenFinished
+    # display_order: -1
+    materials:
+      git-repo:
+        type: git
+        url: https://github.com/Asmodeus2080/go-cd-material-rep.git
+        branch: main
+        # shallow_clone: true
 
-  #   stages:
-  #     - build:
-  #         clean_workspace: true
-  #         jobs:
-  #           build-job:
-  #             tasks:
-  #               - exec:
-  #                   command: echo
-  #                   arguments:
-  #                     - "Starting build process"
-  #           another-build-job:
-  #             tasks:
-  #               - exec:
-  #                   command: echo
-  #                   arguments:
-  #                     - "success"
-  #               # - exec:
-  #               #     command: /bin/bash
-  #               #     arguments:
-  #               #       - -c
-  #               #       - |
-  #               #         echo "Current working directory:"
-  #               #         pwd
-  #               #         echo "Repository contents:"
-  #               #         ls -la
+    stages:
+      - build:
+          clean_workspace: true
+          jobs:
+            build-job:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "Starting build process"
+            another-build-job:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "success"
+                # - exec:
+                #     command: /bin/bash
+                #     arguments:
+                #       - -c
+                #       - |
+                #         echo "Current working directory:"
+                #         pwd
+                #         echo "Repository contents:"
+                #         ls -la
 
-  #     - test:
-  #         approval:
-  #           type: manual
-  #           allow_only_on_success: true
-  #         jobs:
-  #           unit-tests:
-  #             tasks:
-  #               - exec:
-  #                   command: echo
-  #                   arguments:
-  #                     - "Running test suite"
-  #               # - exec:
-  #               #     command: /bin/bash
-  #               #     arguments:
-  #               #       - -c
-  #               #       - |
-  #               #         echo "Performing checks"
-  #               #         # Add any specific test commands here
-  #               #         exit 0
+      - test:
+          approval:
+            type: manual
+            allow_only_on_success: true
+          jobs:
+            unit-tests:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "Running test suite"
+                # - exec:
+                #     command: /bin/bash
+                #     arguments:
+                #       - -c
+                #       - |
+                #         echo "Performing checks"
+                #         # Add any specific test commands here
+                #         exit 0
 
-  #     # - deploy:
-  #     #     jobs:
-  #     #       deploy-job:
-  #     #         tasks:
-  #     #           - exec:
-  #     #               command: echo
-  #     #               arguments:
-  #     #                 - "Deployment simulation"
+      # - deploy:
+      #     jobs:
+      #       deploy-job:
+      #         tasks:
+      #           - exec:
+      #               command: echo
+      #               arguments:
+      #                 - "Deployment simulation"
   demo-test-qa-pipeline:
     group: test-group
     label_template: "qa-${COUNT}"
