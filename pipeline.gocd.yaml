@@ -13,7 +13,7 @@
 #               - exec:
 #                   command: echo
 #                   arguments: ["This is a pipeline without a template."]
-
+format_version: 10
 environments:
   dev:
     pipelines:
@@ -28,8 +28,6 @@ environments:
     pipelines:
       - demo-test-prod-pipeline
 
-
-format_version: 10
 pipelines:
   demo-test-dev-pipeline:
     group: test-group
