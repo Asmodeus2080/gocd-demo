@@ -16,15 +16,23 @@
 format_version: 10
 environments:
   dev:
+    agents:
+      - DESKTOP-E39DR9U
     pipelines:
       - demo-test-dev-pipeline
   qa:
+    agents:
+      - DESKTOP-E39DR9U
     pipelines:
       - demo-test-qa-pipeline
   stag:
+    agents:
+      - DESKTOP-E39DR9U
     pipelines:
       - demo-test-stag-pipeline
   prod:
+    agents:
+      - DESKTOP-E39DR9U
     pipelines:
       - demo-test-prod-pipeline
 pipelines:
@@ -45,8 +53,6 @@ pipelines:
           clean_workspace: true
           jobs:
             build-job:
-              resources:
-                - default
               tasks:
                 - exec:
                     command: echo
