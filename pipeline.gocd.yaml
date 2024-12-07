@@ -45,6 +45,8 @@ pipelines:
           clean_workspace: true
           jobs:
             build-job:
+              resources:
+                - default
               tasks:
                 - exec:
                     command: echo
