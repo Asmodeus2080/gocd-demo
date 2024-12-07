@@ -63,14 +63,14 @@ pipelines:
                 #         echo "Repository contents:"
                 #         ls -la
 
-      # - test:
-      #     jobs:
-      #       unit-tests:
-      #         tasks:
-      #           - exec:
-      #               command: echo
-      #               arguments:
-      #                 - "Running test suite"
+      - test:
+          jobs:
+            unit-tests:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "Running test suite"
                 # - exec:
                 #     command: /bin/bash
                 #     arguments:
