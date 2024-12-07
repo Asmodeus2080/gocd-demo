@@ -42,9 +42,9 @@ pipelines:
             another-build-job:
               tasks:
                 - exec:
-                    command: echo
+                    command: exit
                     arguments:
-                      - "starting another task in the same job"
+                      - 1
                 # - exec:
                 #     command: /bin/bash
                 #     arguments:
