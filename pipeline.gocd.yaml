@@ -17,22 +17,22 @@ format_version: 10
 environments:
   dev:
     agents:
-      - DESKTOP-E39DR9U
+      - 31cf3675-8bd9-4ae7-9e00-4eabf73f4cb4
     pipelines:
       - demo-test-dev-pipeline
   qa:
     agents:
-      - DESKTOP-E39DR9U
+      - 31cf3675-8bd9-4ae7-9e00-4eabf73f4cb4
     pipelines:
       - demo-test-qa-pipeline
   stag:
     agents:
-      - DESKTOP-E39DR9U
+      - 31cf3675-8bd9-4ae7-9e00-4eabf73f4cb4
     pipelines:
       - demo-test-stag-pipeline
   prod:
     agents:
-      - DESKTOP-E39DR9U
+      - 31cf3675-8bd9-4ae7-9e00-4eabf73f4cb4
     pipelines:
       - demo-test-prod-pipeline
 pipelines:
