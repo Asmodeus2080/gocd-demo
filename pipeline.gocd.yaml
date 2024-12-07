@@ -1,18 +1,148 @@
+# # pipelines:
+# #   basic-pipeline:
+# #     group: test-group
+# #     materials:
+# #       - git:
+# #           url: "https://github.com/Asmodeus2080/go-cd-material-rep.git"
+# #           branch: main
+# #     stages:
+# #       - name: test-stage
+# #         jobs:
+# #           - name: test-job
+# #             tasks:
+# #               - exec:
+# #                   command: echo
+# #                   arguments: ["This is a pipeline without a template."]
+# format_version: 10
+# environments:
+#   dev:
+#     pipelines:
+#       - demo-test-dev-pipeline
+#   qa:
+#     pipelines:
+#       - demo-test-qa-pipeline
+#   stag:
+#     pipelines:
+#       - demo-test-stag-pipeline
+#   prod:
+#     pipelines:
+#       - demo-test-prod-pipeline
+
 # pipelines:
-#   basic-pipeline:
+#   demo-test-dev-pipeline:
 #     group: test-group
+#     label_template: "dev-${COUNT}"
+#     lock_behavior: unlockWhenFinished
+#     # display_order: -1
 #     materials:
-#       - git:
-#           url: "https://github.com/Asmodeus2080/go-cd-material-rep.git"
-#           branch: main
+#       git-repo:
+#         type: git
+#         url: https://github.com/Asmodeus2080/go-cd-material-rep.git
+#         branch: main
+#         # shallow_clone: true
+
 #     stages:
-#       - name: test-stage
+#       - build:
+#           clean_workspace: true
+#           jobs:
+#             build-job:
+#               tasks:
+#                 - exec:
+#                     command: echo
+#                     arguments:
+#                       - "Starting build process"
+#             another-build-job:
+#               tasks:
+#                 - exec:
+#                     command: echo
+#                     arguments:
+#                       - "success"
+#                 # - exec:
+#                 #     command: /bin/bash
+#                 #     arguments:
+#                 #       - -c
+#                 #       - |
+#                 #         echo "Current working directory:"
+#                 #         pwd
+#                 #         echo "Repository contents:"
+#                 #         ls -la
+
+#       - test:
+#           approval:
+#             type: manual
+#             allow_only_on_success: true
+#           jobs:
+#             unit-tests:
+#               tasks:
+#                 - exec:
+#                     command: echo
+#                     arguments:
+#                       - "Running test suite"
+#                 # - exec:
+#                 #     command: /bin/bash
+#                 #     arguments:
+#                 #       - -c
+#                 #       - |
+#                 #         echo "Performing checks"
+#                 #         # Add any specific test commands here
+#                 #         exit 0
+
+#       # - deploy:
+#       #     jobs:
+#       #       deploy-job:
+#       #         tasks:
+#       #           - exec:
+#       #               command: echo
+#       #               arguments:
+#       #                 - "Deployment simulation"
+# demo-test-qa-pipeline:
+#   group: test-group
+#   label_template: "qa-${COUNT}"
+#   lock_behavior: unlockWhenFinished
+#   materials:
+#     dev_dependency:
+#       pipeline: demo-test-dev-pipeline
+#       stage: test
+#   stages:
+#     - test:
 #         jobs:
-#           - name: test-job
-#             tasks:
-#               - exec:
-#                   command: echo
-#                   arguments: ["This is a pipeline without a template."]
+#           qa_test:
+#             command: echo
+#             arguments: 
+#               - "testing in qa env"
+  
+# demo-test-stag-pipeline:
+#   group: test-group
+#   label_template: "stag-${COUNT}"
+#   lock_behavior: unlockWhenFinished
+#   materials:
+#     qa_dependency:
+#       pipeline: demo-test-qa-pipeline
+#       stage: test
+#   stages:
+#     - run:
+#         jobs:
+#           run_stage:
+#             command: echo
+#             arguments:
+#               - "running on stage"
+  
+# demo-test-prod-pipeline:
+#   group: test-group
+#   label_template: "prod-${COUNT}"
+#   lock_behavior: unlockWhenFinished
+#   materials:
+#     stag_dependency:
+#       pipeline: demo-test-stag-pipeline
+#       stage: run
+#   stages:
+#     - prod_run:
+#         jobs:
+#           run_prod:
+#             command: echo
+#             arguments:
+#               - "running in prod"
+
 format_version: 10
 environments:
   dev:
@@ -33,14 +163,11 @@ pipelines:
     group: test-group
     label_template: "dev-${COUNT}"
     lock_behavior: unlockWhenFinished
-    # display_order: -1
     materials:
       git-repo:
         type: git
         url: https://github.com/Asmodeus2080/go-cd-material-rep.git
         branch: main
-        # shallow_clone: true
-
     stages:
       - build:
           clean_workspace: true
@@ -51,97 +178,57 @@ pipelines:
                     command: echo
                     arguments:
                       - "Starting build process"
-            another-build-job:
-              tasks:
-                - exec:
-                    command: echo
-                    arguments:
-                      - "success"
-                # - exec:
-                #     command: /bin/bash
-                #     arguments:
-                #       - -c
-                #       - |
-                #         echo "Current working directory:"
-                #         pwd
-                #         echo "Repository contents:"
-                #         ls -la
 
+  demo-test-qa-pipeline:
+    group: test-group
+    label_template: "qa-${COUNT}"
+    lock_behavior: unlockWhenFinished
+    materials:
+      dev_dependency:
+        pipeline: demo-test-dev-pipeline
+        stage: test
+    stages:
       - test:
-          approval:
-            type: manual
-            allow_only_on_success: true
           jobs:
-            unit-tests:
+            qa_test:
               tasks:
                 - exec:
                     command: echo
                     arguments:
-                      - "Running test suite"
-                # - exec:
-                #     command: /bin/bash
-                #     arguments:
-                #       - -c
-                #       - |
-                #         echo "Performing checks"
-                #         # Add any specific test commands here
-                #         exit 0
+                      - "testing in qa env"
 
-      # - deploy:
-      #     jobs:
-      #       deploy-job:
-      #         tasks:
-      #           - exec:
-      #               command: echo
-      #               arguments:
-      #                 - "Deployment simulation"
-demo-test-qa-pipeline:
-  group: test-group
-  label_template: "qa-${COUNT}"
-  lock_behavior: unlockWhenFinished
-  materials:
-    dev_dependency:
-      pipeline: demo-test-dev-pipeline
-      stage: test
-  stages:
-    - test:
-        jobs:
-          qa_test:
-            command: echo
-            arguments: 
-              - "testing in qa env"
-  
-demo-test-stag-pipeline:
-  group: test-group
-  label_template: "stag-${COUNT}"
-  lock_behavior: unlockWhenFinished
-  materials:
-    qa_dependency:
-      pipeline: demo-test-qa-pipeline
-      stage: test
-  stages:
-    - run:
-        jobs:
-          run_stage:
-            command: echo
-            arguments:
-              - "running on stage"
-  
-demo-test-prod-pipeline:
-  group: test-group
-  label_template: "prod-${COUNT}"
-  lock_behavior: unlockWhenFinished
-  materials:
-    stag_dependency:
-      pipeline: demo-test-stag-pipeline
-      stage: run
-  stages:
-    - prod_run:
-        jobs:
-          run_prod:
-            command: echo
-            arguments:
-              - "running in prod"
+  demo-test-stag-pipeline:
+    group: test-group
+    label_template: "stag-${COUNT}"
+    lock_behavior: unlockWhenFinished
+    materials:
+      qa_dependency:
+        pipeline: demo-test-qa-pipeline
+        stage: test
+    stages:
+      - run:
+          jobs:
+            run_stage:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "running on stage"
 
-
-  
+  demo-test-prod-pipeline:
+    group: test-group
+    label_template: "prod-${COUNT}"
+    lock_behavior: unlockWhenFinished
+    materials:
+      stag_dependency:
+        pipeline: demo-test-stag-pipeline
+        stage: run
+    stages:
+      - prod_run:
+          jobs:
+            run_prod:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "running in prod"
