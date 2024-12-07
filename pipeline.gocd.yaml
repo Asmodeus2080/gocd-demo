@@ -186,7 +186,7 @@ pipelines:
     materials:
       dev_dependency:
         pipeline: demo-test-dev-pipeline
-        stage: test
+        stage: build
     stages:
       - test:
           jobs:
