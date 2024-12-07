@@ -21,12 +21,12 @@ environments:
   qa:
     pipelines:
       - demo-test-qa-pipeline
-#   stag:
-#     pipelines:
-#       - demo-test-stag-pipeline
-#   prod:
-#     pipelines:
-#       - demo-test-prod-pipeline
+  stag:
+    pipelines:
+      - demo-test-stag-pipeline
+  prod:
+    pipelines:
+      - demo-test-prod-pipeline
 pipelines:
   demo-test-dev-pipeline:
     group: test-group
@@ -112,34 +112,38 @@ pipelines:
                     arguments: 
                       - "testing in qa env"
   
-# demo-test-stag-pipeline:
-#   group: test-group
-#   label_template: "stag-${COUNT}"
-#   lock_behavior: unlockWhenFinished
-#   materials:
-#     qa_dependency:
-#       pipeline: demo-test-qa-pipeline
-#       stage: test
-#   stages:
-#     - run:
-#         jobs:
-#           run_stage:
-#             command: echo
-#             arguments:
-#               - "running on stage"
+  demo-test-stag-pipeline:
+    group: test-group
+    label_template: "stag-${COUNT}"
+    lock_behavior: unlockWhenFinished
+    materials:
+      qa_dependency:
+        pipeline: demo-test-qa-pipeline
+        stage: test
+    stages:
+      - run:
+          jobs:
+            run_stage:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "running on stage"
   
-# demo-test-prod-pipeline:
-#   group: test-group
-#   label_template: "prod-${COUNT}"
-#   lock_behavior: unlockWhenFinished
-#   materials:
-#     stag_dependency:
-#       pipeline: demo-test-stag-pipeline
-#       stage: run
-#   stages:
-#     - prod_run:
-#         jobs:
-#           run_prod:
-#             command: echo
-#             arguments:
-#               - "running in prod"
+  demo-test-prod-pipeline:
+    group: test-group
+    label_template: "prod-${COUNT}"
+    lock_behavior: unlockWhenFinished
+    materials:
+      stag_dependency:
+        pipeline: demo-test-stag-pipeline
+        stage: run
+    stages:
+      - prod_run:
+          jobs:
+            run_prod:
+              tasks:
+                - exec:
+                    command: echo
+                    arguments:
+                      - "running in prod"
