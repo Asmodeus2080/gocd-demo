@@ -37,8 +37,8 @@ pipelines:
     stages:
       - build:
           clean_workspace: true
-          approval:
-            type: manual
+          # approval:
+          #   type: manual
             # allow_only_on_success: true
           jobs:
             build-job:
