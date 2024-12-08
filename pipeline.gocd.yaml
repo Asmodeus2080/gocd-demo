@@ -55,7 +55,8 @@ pipelines:
               tasks:
                 - exec:
                     command: echo
-                    arguments: "starting build process"
+                    arguments: 
+                      - "starting build process"
 
   demo-test-dev-pipeline:
     group: test-group
