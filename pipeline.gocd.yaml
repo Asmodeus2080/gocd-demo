@@ -86,7 +86,7 @@ pipelines:
                       - -c
                       - |
                         echo "Performing checks"
-                        # Add any specific test commands here
+                        pwd
                         exit 0
 
   demo-test-qa-pipeline:
