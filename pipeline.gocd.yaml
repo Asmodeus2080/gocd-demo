@@ -17,23 +17,23 @@ format_version: 10
 environments:
   dev:
     agents:
-      - 31cf3675-8bd9-4ae7-9e00-4eabf73f4cb4
+      - 75dfb100-1942-415f-81cb-fb3fcb218128
     pipelines:
       - demo-test-build-pipeline
       - demo-test-dev-pipeline
   qa:
     agents:
-      - 31cf3675-8bd9-4ae7-9e00-4eabf73f4cb4
+      - 75dfb100-1942-415f-81cb-fb3fcb218128
     pipelines:
       - demo-test-qa-pipeline
   stag:
     agents:
-      - 31cf3675-8bd9-4ae7-9e00-4eabf73f4cb4
+      - 75dfb100-1942-415f-81cb-fb3fcb218128
     pipelines:
       - demo-test-stag-pipeline
   prod:
     agents:
-      - 31cf3675-8bd9-4ae7-9e00-4eabf73f4cb4
+      - 75dfb100-1942-415f-81cb-fb3fcb218128
     pipelines:
       - demo-test-prod-pipeline
 pipelines:
