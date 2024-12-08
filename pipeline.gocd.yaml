@@ -81,12 +81,12 @@ pipelines:
                     arguments:
                       - "Running test suite"
                 - exec:
-                    command: /bin/bash
+                    command: cmd
                     arguments:
-                      - -c
+                      - /c
                       - |
                         echo "Performing checks"
-                        pwd
+                        dir
                         exit 0
 
   demo-test-qa-pipeline:
