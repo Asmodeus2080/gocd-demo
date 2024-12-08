@@ -65,7 +65,7 @@ pipelines:
     # display_order: -1
     materials:
       build-dependency:
-        pipeline: demo-test-dev-pipeline
+        pipeline: demo-test-build-pipeline
         stage: build
         auto_update: false
     stages:
