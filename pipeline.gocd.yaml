@@ -100,6 +100,9 @@ pipelines:
         auto_update: false
     stages:
       - test:
+          approval:
+            type: manual
+            allow_only_on_success: true
           jobs:
             qa_test:
               tasks:
@@ -120,6 +123,9 @@ pipelines:
         auto_update: false
     stages:
       - run:
+          approval:
+            type: manual
+            allow_only_on_success: true
           jobs:
             run_stage:
               tasks:
@@ -140,6 +146,9 @@ pipelines:
         auto_update: false
     stages:
       - prod_run:
+          approval:
+            type: manual
+            allow_only_on_success: true
           jobs:
             run_prod:
               tasks:
